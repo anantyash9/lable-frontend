@@ -1,0 +1,61 @@
+<div class="main-container"(drop)="onDrop($event)" (dragover)="onDragOver($event)" *ngIf="!imageAdded">
+    <button mat-button color="accent" (click)="fileInput.click()">Upload Artwork</button>
+    <!-- add a file input here -->
+    <input type="file" (change)="onFileSelected($event)" #fileInput style="display:none" multiple>
+    </div>
+    <div class="main-container"*ngIf="imageAdded">
+        <!-- split into 4:1 with left panel for image and right for controls -->
+        <div class="left-panel">
+            <!-- fit the image to the container -->
+            <img id="image-space" [src]="imageSrc" alt="uploaded image">
+        </div>
+        <div class="right-panel">
+            <div class="artwork-panel">
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>Artwork Verification</mat-card-title>
+                        <!-- subtitle -->
+                        <mat-card-subtitle>Verify the artwork with a reference image</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div *ngIf="!artworkAdded">
+                            <img src="assets/artwork.svg"> 
+                            <!-- a upload button here -->
+                            <button mat-stroked-button color="primary" (click)="artwork.click()">Upload Artwork</button>
+                            <!-- add a file input here -->
+                            <input type="file" (change)="onArtworkSelect($event)" #artwork style="display:none" multiple>
+                        </div>
+                        <div *ngIf="artworkAdded">
+                            <img id="artwork-panel" [src]="artworkSrc" alt="artwork">
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+
+                
+            </div>
+            <div class="nutrition-panel" *ngIf="artworkAdded">
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>Nutrient Information Check</mat-card-title>
+                        <!-- subtitle -->
+                        <mat-card-subtitle>Verify the nutrient information with source</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div *ngIf="!jsonAdded">
+                            <img src="assets/nutrient.svg"> 
+                            <!-- a upload button here -->
+                            <button mat-stroked-button color="primary" (click)="nutrient.click()">Upload Nutrient Json</button>
+                            <!-- add a file input here -->
+                            <input type="file" (change)="onJsonSelect($event)" #nutrient style="display:none" multiple>
+                        </div>
+                        <div *ngIf="jsonAdded">
+                            <img id="artwork-panel" [src]="artworkSrc" alt="artwork">
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+
+                
+            </div>
+        
+        </div>
+    </div>
